@@ -10,3 +10,6 @@ table, th, td {
 	text-align: center;
 	vertical-align: middle;
 }
+.right {
+	float: right;
+}

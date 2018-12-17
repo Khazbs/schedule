@@ -8,6 +8,7 @@ function fetchSchedule() {
 	var subjectsXhttpRequest = new XMLHttpRequest();
 	scheduleXhttpRequest.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("status").innerText = "Обработка расписания...";
 			var week = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 			var startGrade = 5;
 			var subjectOptions = '';
@@ -34,19 +35,33 @@ function fetchSchedule() {
 			for (var i = 1; i <= schedule.length; ++i) {
 				for (var j = 0; j < schedule[i - 1].length; ++j) {
 					for (var k = 0; k < schedule[i - 1][j].length; ++k) {
-						document.getElementById('select-' + (j + startGrade) + '-' + (k + 1) + '-' + i).value = schedule[i - 1][j][k];
+						var selectElement = document.getElementById('select-' + (j + startGrade) + '-' + (k + 1) + '-' + i);
+						if (selectElement != null) {
+							selectElement.value = schedule[i - 1][j][k];
+						}
 					}
 				}
 			}
+			document.getElementById("status").innerText = "Не забудьте сохранить изменения.";
 		}
 	};
 	subjectsXhttpRequest.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			subjects = JSON.parse(subjectsXhttpRequest.responseText);
-			scheduleXhttpRequest.open("GET", "/data/schedule.json", true);
-			scheduleXhttpRequest.send();
+		if (this.readyState == 4) {
+			if (this.status == 200) {
+				subjects = JSON.parse(subjectsXhttpRequest.responseText);
+				scheduleXhttpRequest.open("GET", "/data/schedule.json", true);
+				scheduleXhttpRequest.send();
+			}
+			else {
+				document.getElementById("status").innerText = "При загрузке расписания произошла ошибка.";
+			}
 		}
 	}
 	subjectsXhttpRequest.open("GET", "/data/subjects.json", true);
+	document.getElementById("status").innerText = "Загрузка расписания...";
 	subjectsXhttpRequest.send();
+}
+
+function submit() {
+	alert("Not implemented!")
 }

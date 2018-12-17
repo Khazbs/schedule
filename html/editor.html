@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Расписание</title>
+		<title>Редактирование расписания</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="/static/styles.css" />
 		<script type="text/javascript" src="/static/editor.js"></script>
 	</head>
 	<body>
+		<nav>
+			<a href="/logout"><button>Выйти</button></a>
+			<span id="status">Инициализация страницы...</span>
+			<a class="right" href="javascript:submit()"><button><b>Сохранить</b></button></a>
+			<a class="right" href="/"><button>Вернуться</button></a>
+		</nav><br />
 		<table>
 			<thead>
 				<tr>

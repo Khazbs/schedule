@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Расписание</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/static/styles.css" />
+		<script type="text/javascript" src="/static/viewer.js"></script>
+	</head>
+	<body>
+		<nav>
+			<a href="/logout"><button>Выйти</button></a>
+			<a class="right" href="/edit"><button><b>Редактировать</b></button></a>
+		</nav><br />
+		<table>
+			<thead>
+				<tr>
+					<th>День недели</th>
+		 			<th>5 класс</th>
+		 			<th>6 класс</th>
+		 			<th>7 класс</th>
+		 			<th>8 класс</th>
+		 			<th>9 класс</th>
+		 			<th>10 класс</th>
+		 			<th>11 класс</th>
+				</tr>
+			</thead>
+			<tbody id="schedule"></tbody>
+		</table>
+		<script type="text/javascript">fetchSchedule();</script>
+	</body>
+</html>
