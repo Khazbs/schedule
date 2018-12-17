@@ -43,10 +43,10 @@ function fetchSchedule() {
 	subjectsXhttpRequest.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			subjects = JSON.parse(subjectsXhttpRequest.responseText);
-			scheduleXhttpRequest.open("GET", "/static/schedule.json", true);
+			scheduleXhttpRequest.open("GET", "/data/schedule.json", true);
 			scheduleXhttpRequest.send();
 		}
 	}
-	subjectsXhttpRequest.open("GET", "/static/subjects.json", true);
+	subjectsXhttpRequest.open("GET", "/data/subjects.json", true);
 	subjectsXhttpRequest.send();
 }
