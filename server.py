@@ -20,14 +20,16 @@ class EditHandler(tornado.web.RequestHandler):
 		auth = authenticate(self.get_argument("password"))
 		if auth:
 			self.get_argument("changes", None)
+			subject_ids = json.load("./data/subjects.json").keys()
 			schedule = json.load("./data/schedule.json")
 			for change in changes:
-				if change.lesson not in schedule[change.weekday][change.grade].keys() or schedule[change.weekday][change.grade][change.lesson] == "":
+				if change["lesson"] not in schedule[change["weekday"]][change["grade"]].keys() or
+						schedule[change["weekday"]][change["grade"]][change["lesson"]] == "" or change["subject-id"] not in subject_ids:
 					self.set_status(400)
 					self.finish()
 					return
 				else:
-					schedule[change.weekday][change.grade][change.lesson] = change.subject
+					schedule[change["weekday"]][change["grade"]][change["lesson"]] = change["subject-id"]
 			json.dump("./data/schedule.json")
 		else:
 			self.set_status(401)
