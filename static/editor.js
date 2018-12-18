@@ -63,5 +63,20 @@ function fetchSchedule() {
 }
 
 function submit() {
-	alert("Not implemented!")
+	var changes = [];
+	for (var i = 1; i <= schedule.length; ++i) {
+		for (var j = 0; j < schedule[i - 1].length; ++j) {
+			for (var k = 0; k < schedule[i - 1][j].length; ++k) {
+				var selectElement = document.getElementById('select-' + (j + startGrade) + '-' + (k + 1) + '-' + i);
+				if (selectElement != null && selectElement.value != schedule[i - 1][j][k]) {
+					changes.push({
+						"weekday": i - 1,
+						"grade": j,
+						"lesson": k,
+						"subject-id": selectElement.value
+					});
+				}
+			}
+		}
+	}
 }
